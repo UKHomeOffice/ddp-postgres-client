@@ -1,1 +1,1 @@
-# postgres-client
+# ddp-postgres-client
