@@ -20,7 +20,6 @@ steps:
     - push
 
 
-
   commands:
   # Wait for the docker service to be up
   - echo "Checking for docker availability."
