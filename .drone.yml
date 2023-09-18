@@ -15,7 +15,7 @@ steps:
     IMAGE_NAME: quay.io/ukhomeofficedigital/ddp-postgres-client
   when:
     branch:
-    - master
+    - main
     event:
     - push
 
