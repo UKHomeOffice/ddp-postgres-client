@@ -18,6 +18,7 @@ steps:
     - main
     event:
     - push
+    - tag
 
 
 
@@ -29,7 +30,12 @@ steps:
   - docker login -u="$${DOCKER_USERNAME}" -p="$${DOCKER_PASSWORD}" quay.io
   - docker build -t ddp-postgres-client:$${DRONE_COMMIT} .
   - docker tag ddp-postgres-client:$${DRONE_COMMIT} $${DOCKER_REGISTRY_URL}/ukhomeofficedigital/ddp-postgres-client:latest
+  - docker tag ddp-postgres-client:$${DRONE_COMMIT} $${DOCKER_REGISTRY_URL}/ukhomeofficedigital/ddp-postgres-client:$${DRONE_COMMIT_SHA}
+  - docker tag ddp-postgres-client:$${DRONE_COMMIT} $${DOCKER_REGISTRY_URL}/ukhomeofficedigital/ddp-postgres-client:$${DRONE_TAG}
   - docker push $${DOCKER_REGISTRY_URL}/ukhomeofficedigital/ddp-postgres-client:latest
+  - docker push $${DOCKER_REGISTRY_URL}/ukhomeofficedigital/ddp-postgres-client:$${DRONE_COMMIT_SHA}
+  - docker push $${DOCKER_REGISTRY_URL}/ukhomeofficedigital/ddp-postgres-client:$${DRONE_TAG}
+
 
 services:
   - name: docker
